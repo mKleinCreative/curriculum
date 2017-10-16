@@ -48,10 +48,11 @@ module.exports = app => {
     const { user } = request
     if (!user){
       console.log( '<3333333 redirecting to log in. <3333333' )
-      const completeUrl = `${request.protocol}://${request.get('host')}${request.originalUrl}`
+      const completeUrl = `${request.protocol}://${request.get('host')}${request.originalUrl}` 
       console.log( '---===completeUrl===---', completeUrl )
       console.log( '---===request.cookies.lgJWT===---', request.cookies.lgJWT )
       response.redirect(
+        302,
         `${process.env.IDM_BASE_URL}/sign-in?redirect=${encodeURIComponent(completeUrl)}`
       )
       return
